@@ -5,7 +5,7 @@
 [submodule "/Users/misha/harvard/github/nsaph-cwl-airflow/project/data_platform"]
 	path = /Users/misha/harvard/github/nsaph-cwl-airflow/project/data_platform
 	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/nsaph.git
-	branch = docker
+	branch = develop
 [submodule "/Users/misha/harvard/github/nsaph-cwl-airflow/project/workflows"]
 	path = /Users/misha/harvard/github/nsaph-cwl-airflow/project/workflows
 	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/cwl_workflows.git
@@ -15,3 +15,12 @@
 [submodule "project/nsaph_utils"]
 	path = project/nsaph_utils
 	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/tools/nsaph_utils.git
+	branch = dev
+[submodule "project/epa"]
+	path = project/epa
+	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/tools/epa.git
+	branch = develop
+[submodule "project/cms"]
+	path = project/cms
+	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/tools/cms.git
+	branch = develop
