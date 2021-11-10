@@ -42,7 +42,6 @@ dependencies:
     - click-plugins==1.1.1
     - clickclick==20.10.2
     - cligj==0.7.2
-    - cms==0.0.1.5
     - colorama==0.4.4
     - coloredlogs==15.0.1
     - colorlog==6.5.0
@@ -100,8 +99,6 @@ dependencies:
     - natsort==7.1.1
     - netcdf4==1.5.8
     - networkx==2.6.3
-    - nsaph==0.0.2.2
-    - nsaph-utils==0.0.5.6
     - numpy==1.21.3
     - openapi-schema-validator==0.1.5
     - openapi-spec-validator==0.3.1
@@ -141,7 +138,6 @@ dependencies:
     - rdflib-jsonld==0.6.2
     - recommonmark==0.7.1
     - requests==2.26.0
-    - rpy2==3.4.5
     - ruamel-yaml==0.17.16
     - ruamel-yaml-clib==0.2.6
     - schema-salad==8.2.20211029004247
