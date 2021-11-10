@@ -11,8 +11,8 @@ dependencies:
   - ncurses=6.2
   - openssl=3.0.0
   - pip=21.3.1
-  - python=3.9.7
-  - python_abi=3.9
+  - python=3.8.12
+  - python_abi=3.8
   - readline=8.1
   - setuptools=58.4.0
   - sqlite=3.36.0
