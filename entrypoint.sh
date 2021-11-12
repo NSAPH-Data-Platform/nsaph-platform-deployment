@@ -17,6 +17,12 @@
 # specific language governing permissions and limitations
 # under the License.
 #
+
+# Change the docker default timezone from UTC to EST
+echo "America/New_York" > /etc/timezone
+dpkg-reconfigure tzdata
+date
+
 if [ "$AIRFLOW_CONDA_ENV" == "none" ] ;
 then
         airflow db init
