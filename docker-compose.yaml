@@ -61,7 +61,7 @@ x-aliases:
         - ${CWL_INPUTS_FOLDER:-./cwl_inputs_folder}:/opt/airflow/project/temp/cwl_inputs_folder
         - ${CWL_OUTPUTS_FOLDER:-./cwl_outputs_folder}:/opt/airflow/project/temp/cwl_outputs_folder
         - ${CWL_PICKLE_FOLDER:-./cwl_pickle_folder}:/opt/airflow/project/temp/cwl_pickle_folder
-        - /data/incoming:/data
+        - /data/incoming:/data/incoming
         - type: bind
           source: /var/run/docker.sock
           target: /var/run/docker.sock
