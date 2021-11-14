@@ -10,6 +10,6 @@ args = {
 
 dag = CWLDAG(
     workflow="/opt/airflow/project/cms/src/cwl/medicaid.cwl",
-    dag_id="pi",
+    dag_id="medicaid",
     default_args=args
 )
