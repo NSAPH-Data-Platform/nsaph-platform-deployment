@@ -20,7 +20,7 @@
 
 echo "Installing cwl-airflow"
 cd /cwl-airflow || exit
-pip3 install . --use-feature=2020-resolver
-pip3 install --upgrade 'SQLAlchemy==1.3.23' psycopg2-binary cwltool cwlref-runner wheel WTForms==2.3.3 --force-reinstall --use-feature=2020-resolver
+pip3 install .
+pip3 install -r requirements.txt
 cd ~ || exit
 mkdir cwl-rundir
