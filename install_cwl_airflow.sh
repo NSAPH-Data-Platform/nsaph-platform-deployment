@@ -23,4 +23,3 @@ cd /cwl-airflow || exit
 pip3 install .
 pip3 install -r requirements.txt
 cd ~ || exit
-mkdir cwl-rundir
