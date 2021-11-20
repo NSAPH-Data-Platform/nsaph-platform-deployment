@@ -1,6 +1,7 @@
 marko
 paramiko
 sshtunnel
+cwltool
 cwlref-runner
 wheel
 pytz
