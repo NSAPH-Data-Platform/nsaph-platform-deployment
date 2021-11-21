@@ -28,6 +28,9 @@ x-aliases:
         dockerfile: Dockerfile
         args:
           AIRFLOW_CONDA_ENV: "${AIRFLOW_CONDA_ENV:-none}"
+          http_proxy: rcproxy.rc.fas.harvard.edu:3128
+          https_proxy: rcproxy.rc.fas.harvard.edu:3128
+
 
   - &airflow_env
       environment:
