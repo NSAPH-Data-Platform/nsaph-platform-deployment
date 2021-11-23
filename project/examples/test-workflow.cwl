@@ -9,8 +9,9 @@ inputs:
 
 steps:
   echo:
-    class: CommandLineTool
-    baseCommand: [echo, "$HTTP_PROXY"]
+    run:
+      class: CommandLineTool
+      baseCommand: [echo, "$HTTP_PROXY"]
     in: []
     out: []
   download:
