@@ -2,6 +2,14 @@
 
 cwlVersion: v1.0
 class: Workflow
+
+requirements:
+  EnvVarRequirement:
+    envDef:
+      HTTP_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
+      HTTPS_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
+      NO_PROXY: "localhost,127.0.0.1,172.17.0.1,*.rc.fas.harvard.edu"
+
 inputs:
   url:
     type: string
