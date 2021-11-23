@@ -8,6 +8,11 @@ inputs:
     default: "https://aqs.epa.gov/aqsweb/airdata/annual_conc_by_monitor_1990.zip"
 
 steps:
+  echo:
+    class: CommandLineTool
+    baseCommand: [echo, "$HTTP_PROXY"]
+    in: []
+    out: []
   download:
     run:
       class: CommandLineTool
@@ -19,7 +24,7 @@ steps:
             position: 1
       outputs:
         data:
-          type: File
+          type: File?
           outputBinding:
             glob: "*.zip"
         log:
@@ -63,7 +68,7 @@ steps:
 
 outputs:
   zip:
-    type: File
+    type: File?
     outputSource: download/data
   download_log:
     type: File
