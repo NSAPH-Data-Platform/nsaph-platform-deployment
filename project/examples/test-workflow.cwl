@@ -12,6 +12,7 @@ steps:
     run:
       class: CommandLineTool
       baseCommand: [echo, "$HTTP_PROXY"]
+      outputs: []
     in: []
     out: []
   download:
