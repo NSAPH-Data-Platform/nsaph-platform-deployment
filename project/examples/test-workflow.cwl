@@ -13,7 +13,8 @@ requirements:
 
 inputs:
   proxy:
-    type: string
+    type: string?
+    default: ""
   url:
     type: string
     default: "https://aqs.epa.gov/aqsweb/airdata/annual_conc_by_monitor_1990.zip"
