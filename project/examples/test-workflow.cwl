@@ -24,9 +24,12 @@ steps:
     run:
       class: CommandLineTool
       baseCommand: env
-      inputs: []
+      inputs:
+        proxy:
+          type: string?
       outputs: []
-    in: []
+    in:
+      proxy: proxy
     out: []
   download:
     run:
