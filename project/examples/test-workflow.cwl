@@ -5,11 +5,6 @@ class: Workflow
 
 requirements:
   InlineJavascriptRequirement: {}
-  EnvVarRequirement:
-    envDef:
-      HTTP_PROXY: $(inputs.proxy)
-      HTTPS_PROXY: $(inputs.proxy)
-      NO_PROXY: "localhost,127.0.0.1,172.17.0.1"
 
 inputs:
   proxy:
@@ -20,21 +15,19 @@ inputs:
     default: "https://aqs.epa.gov/aqsweb/airdata/annual_conc_by_monitor_1990.zip"
 
 steps:
-  echo:
-    run:
-      class: CommandLineTool
-      baseCommand: env
-      inputs: []
-      outputs: []
-    in: []
-    out: []
   download:
     run:
       class: CommandLineTool
+      EnvVarRequirement:
+        envDef:
+          HTTP_PROXY: $(inputs.proxy)
+          HTTPS_PROXY: $(inputs.proxy)
+          NO_PROXY: "localhost,127.0.0.1,172.17.0.1"
       baseCommand: [curl, -L , -O]
       inputs:
         proxy:
           type: string?
+          default: ""
         url:
           type: string
           inputBinding:
@@ -52,6 +45,7 @@ steps:
       stderr: download.err
     in:
       url: url
+      proxy: proxy
     out:
       - data
       - log
