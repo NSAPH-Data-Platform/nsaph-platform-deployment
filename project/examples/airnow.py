@@ -9,7 +9,7 @@ args = {
 }
 
 dag = CWLDAG(
-    workflow="/opt/airflow/project/epa/src/cwl/aqs.cwl",
-    dag_id="AQS",
+    workflow="/opt/airflow/project/epa/src/cwl/airnow.cwl",
+    dag_id="AirNow",
     default_args=args
 )
