@@ -6,11 +6,13 @@ class: Workflow
 requirements:
   EnvVarRequirement:
     envDef:
-      HTTP_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
-      HTTPS_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
-      NO_PROXY: "localhost,127.0.0.1,172.17.0.1,*.rc.fas.harvard.edu"
+      HTTP_PROXY: $(inputs.proxy)
+      HTTPS_PROXY: $(inputs.proxy)
+      NO_PROXY: "localhost,127.0.0.1,172.17.0.1"
 
 inputs:
+  proxy:
+    type: string
   url:
     type: string
     default: "https://aqs.epa.gov/aqsweb/airdata/annual_conc_by_monitor_1990.zip"
