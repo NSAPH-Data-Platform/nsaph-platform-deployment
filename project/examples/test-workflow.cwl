@@ -11,7 +11,7 @@ steps:
   echo:
     run:
       class: CommandLineTool
-      baseCommand: [echo, "$HTTP_PROXY"]
+      baseCommand: env
       inputs: []
       outputs: []
     in: []
