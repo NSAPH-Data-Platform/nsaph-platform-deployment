@@ -33,6 +33,8 @@ steps:
       class: CommandLineTool
       baseCommand: [curl, -L , -O]
       inputs:
+        proxy:
+          type: string?
         url:
           type: string
           inputBinding:
