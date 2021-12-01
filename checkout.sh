@@ -1,7 +1,10 @@
 #!/bin/bash
 
-git clone -b nsaph-develop git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/cwl-airflow-deployment.git
-cd cwl-airflow-deployment/ || exit
+cwd=$(pwd)
+if  [ "${cwd##*/}" != "cwl-airflow-deployment" ] ; then
+  git clone -b nsaph-develop git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/cwl-airflow-deployment.git
+  cd cwl-airflow-deployment/ || exit
+fi
 git submodule update --init --recursive
 cd project/ || exit
 pushd nsaph_utils && git status && git checkout dev && git status && popd || exit
