@@ -30,7 +30,7 @@ x-aliases:
           AIRFLOW_CONDA_ENV: "${AIRFLOW_CONDA_ENV:-none}"
           HTTP_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
           HTTPS_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
-          NO_PROXY: "localhost,127.0.0.1,172.17.0.1,*.rc.fas.harvard.edu"
+          NO_PROXY: "localhost,127.0.0.1,172.0.0.0/8,*.rc.fas.harvard.edu"
 
   - &airflow_env
       environment:
