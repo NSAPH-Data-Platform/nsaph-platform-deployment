@@ -24,3 +24,7 @@
 	path = project/cms
 	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/tools/cms.git
 	branch = develop
+[submodule "project/gridmet"]
+	path = project/gridmet
+	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/tools/gridmet.git
+	branch = develop
