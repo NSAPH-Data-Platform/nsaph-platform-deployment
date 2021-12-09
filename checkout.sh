@@ -8,6 +8,6 @@ fi
 git submodule update --init --recursive
 cd project/ || exit
 pushd nsaph_utils && git status && git checkout dev && git status && popd || exit
-for d in data_platform epa cms ; do pushd $d && git status && git checkout develop && git status && popd || exit ; done
+for d in data_platform epa cms gridmet ; do pushd $d && git status && git checkout develop && git status && popd || exit ; done
 cd ..
 
