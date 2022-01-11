@@ -38,8 +38,8 @@ without any customizations, just issue the following commands:
 ### Without Conda
 The simplest configuration without Conda:
 
-    git clone https://github.com/ForomePlatform/airflow-cwl-docker.git
-    cd airflow-cwl-docker
+    git clone https://github.com/NSAPH-Data-Platform/nsaph-platform-deployment.git
+    cd nsaph-platform-deployment
     git submodule update --init --recursive
     cp .env_example_postgres_noconda .env
     DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose --env-file ./.env build
@@ -68,8 +68,8 @@ Please note, that Conda installation might take about an hour.
 
 Full sequence of commands to copy and paste:
 
-    git clone https://github.com/ForomePlatform/airflow-cwl-docker.git
-    cd airflow-cwl-docker
+    git clone https://github.com/NSAPH-Data-Platform/nsaph-platform-deployment.git
+    cd nsaph-platform-deployment
     git submodule update --init --recursive
     cp .env_example_postgres_conda .env
     DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose --env-file ./.env build
