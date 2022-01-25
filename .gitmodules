@@ -4,27 +4,24 @@
 
 [submodule "/Users/misha/harvard/github/nsaph-cwl-airflow/project/data_platform"]
 	path = project/data_platform
-	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/nsaph.git
+	url = git@github.com:NSAPH-Data-Platform/nsaph-core-platform.git
 	branch = develop
-[submodule "/Users/misha/harvard/github/nsaph-cwl-airflow/project/workflows"]
-	path = project/workflows
-	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/cwl_workflows.git
 [submodule "/Users/misha/harvard/github/nsaph-cwl-airflow/project/census"]
 	path = project/census
-	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/tools/getcensus.git
+	url = git@github.com:NSAPH-Data-Platform/nsaph-census.git
 [submodule "project/nsaph_utils"]
 	path = project/nsaph_utils
-	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/tools/nsaph_utils.git
+	url = git@github.com:NSAPH-Data-Platform/nsaph-utils.git
 	branch = dev
 [submodule "project/epa"]
 	path = project/epa
-	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/tools/epa.git
+	url = git@github.com:NSAPH-Data-Platform/nsaph-epa.git
 	branch = develop
 [submodule "project/cms"]
 	path = project/cms
-	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/tools/cms.git
+	url = git@github.com:NSAPH-Data-Platform/nsaph-cms.git
 	branch = develop
 [submodule "project/gridmet"]
 	path = project/gridmet
-	url = git@gitlab-int.rc.fas.harvard.edu:rse/francesca_dominici/tools/gridmet.git
+	url = git@github.com:NSAPH-Data-Platform/nsaph-gridmet.git
 	branch = develop
