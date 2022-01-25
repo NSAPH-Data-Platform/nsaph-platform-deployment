@@ -8,3 +8,7 @@
 .env
 project/NSAPHclimate.yml
 project/ExampleEnv.yml
+
+# infrastructure
+__pycache__
+.idea

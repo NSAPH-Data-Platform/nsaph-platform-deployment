@@ -28,9 +28,9 @@ x-aliases:
         dockerfile: Dockerfile
         args:
           AIRFLOW_CONDA_ENV: "${AIRFLOW_CONDA_ENV:-none}"
-          HTTP_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
-          HTTPS_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
-          NO_PROXY: "localhost,127.0.0.1,172.0.0.0/8,*.rc.fas.harvard.edu"
+          # HTTP_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
+          # HTTPS_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
+          # NO_PROXY: "localhost,127.0.0.1,172.0.0.0/8,*.rc.fas.harvard.edu"
 
   - &airflow_env
       environment:
@@ -61,10 +61,10 @@ x-aliases:
         - ${PROJECT_DIR:-./project}:/opt/airflow/project
         - ${DAGS_DIR:-./dags}:/opt/airflow/dags
         - ${LOGS_DIR:-./airflow-logs}:/opt/airflow/logs
-        - ${CWL_TMP_FOLDER:-./cwl_tmp_folder}:/opt/airflow/project/temp/cwl_tmp_folder
-        - ${CWL_INPUTS_FOLDER:-./cwl_inputs_folder}:/opt/airflow/project/temp/cwl_inputs_folder
-        - ${CWL_OUTPUTS_FOLDER:-./cwl_outputs_folder}:/opt/airflow/project/temp/cwl_outputs_folder
-        - ${CWL_PICKLE_FOLDER:-./cwl_pickle_folder}:/opt/airflow/project/temp/cwl_pickle_folder
+        - ${CWL_TMP_FOLDER:-./cwl_tmp_folder}:/opt/airflow/cwl_tmp_folder
+        - ${CWL_INPUTS_FOLDER:-./cwl_inputs_folder}:/opt/airflow/cwl_inputs_folder
+        - ${CWL_OUTPUTS_FOLDER:-./cwl_outputs_folder}:/opt/airflow/cwl_outputs_folder
+        - ${CWL_PICKLE_FOLDER:-./cwl_pickle_folder}:/opt/airflow/cwl_pickle_folder
         - /data/incoming:/data/incoming
         - /scratch/cwl/rundir:/opt/airflow/cwl_rundir
         - type: bind
