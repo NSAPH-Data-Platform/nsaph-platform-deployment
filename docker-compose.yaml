@@ -28,9 +28,6 @@ x-aliases:
         dockerfile: Dockerfile
         args:
           AIRFLOW_CONDA_ENV: "${AIRFLOW_CONDA_ENV:-none}"
-          # HTTP_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
-          # HTTPS_PROXY: "http://rcproxy.rc.fas.harvard.edu:3128"
-          # NO_PROXY: "localhost,127.0.0.1,172.0.0.0/8,*.rc.fas.harvard.edu"
 
   - &airflow_env
       environment:
@@ -54,7 +51,6 @@ x-aliases:
         AIRFLOW__LOGGING__BASE_LOG_FOLDER: "/opt/airflow/logs"
         PROJECT_DIR: "/opt/airflow/project"
         AIRFLOW_CONDA_ENV: "${AIRFLOW_CONDA_ENV:-none}"
-        
 
   - &airflow_volumes
       volumes:
@@ -85,12 +81,14 @@ services:
     <<: *airflow_volumes
     <<: *common_parameters
     command: [ "airflow", "scheduler" ]
-  
+
   webserver:
     image: "${AIRFLOW_IMAGE_NAME:-myairflow-conda}"
     <<: *airflow_build_params
     container_name: webserver
     restart: always
+    depends_on:
+      - "postgres"
     user: root
     <<: *airflow_env
     <<: *airflow_volumes
@@ -117,13 +115,12 @@ services:
     <<: *common_parameters
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
-    profiles:
-      - postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRE_USER} -d ${POSTGRE_DB}"]
       interval: 3s
       timeout: 5s
       retries: 50
+
 volumes:
   postgres-db-volume:
 networks:
