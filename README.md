@@ -1,4 +1,10 @@
-# Apache Airflow + CWL-Airflow in Docker with Optional Conda and R
+# NSAPH Data Platform (Infrastructure as a Code)
+                                 
+This platform is based on a deployment for CWL-Airflow developed
+by Harvard FAS RC in collaboration with Forome Association.
+
+Essentially, this is a fork of: 
+[Apache Airflow + CWL in Docker with Optional Conda and R](https://github.com/ForomePlatform/airflow-cwl-docker)
 
 ## Prerequisites 
 
@@ -31,24 +37,23 @@ You should be aware of some [useful commands](docs/UsefulCommands.md).
 
 
 ## Quick Start
+ 
+This quick start is specific to NSAPH project. For testing general 
+platform capabilities please refer to original 
+[CWL-Airflow deployment README](https://github.com/ForomePlatform/airflow-cwl-docker#quick-start)
 
-If you have a clean VM, where you want to install CWL-Airflow 
-without any customizations, just issue the following commands:
-
-### Without Conda
-The simplest configuration without Conda:
+Full sequence of commands to copy and paste for  a clean VM:
 
     git clone https://github.com/NSAPH-Data-Platform/nsaph-platform-deployment.git
     cd nsaph-platform-deployment
     git submodule update --init --recursive
-    cp .env_example_postgres_noconda .env
     DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose --env-file ./.env build
     mkdir -p ./dags && cp -rf ./project/examples/* ./dags
     docker-compose --env-file ./.env up -d
     
                                                   
 The whole process, when using a stable Internet
-connection should take from 5 to 20 minutes depending on your 
+connection should take from 20 minutes to a few hours depending on your 
 Internet speed.
                  
 You can test the installation as described in 
@@ -56,29 +61,6 @@ You can test the installation as described in
 examples should run in both command-line mode and in Airflow UI. 
 The third example requires Conda.
 
-### With Conda
-If you need to use CWL-Airflow in Conda environment, then instead of 
-
-    cp .env_example_postgres_noconda .env
-use
-
-    cp .env_example_postgres_conda .env
-                                         
-Please note, that Conda installation might take about an hour.
-
-Full sequence of commands to copy and paste:
-
-    git clone https://github.com/NSAPH-Data-Platform/nsaph-platform-deployment.git
-    cd nsaph-platform-deployment
-    git submodule update --init --recursive
-    cp .env_example_postgres_conda .env
-    DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose --env-file ./.env build
-    mkdir -p ./dags && cp -rf ./project/examples/* ./dags
-    docker-compose --env-file ./.env up -d
-
-You can test the installation as described in 
-[Testing the installation](docs/Testing.md) section. All three 
-examples should run in both command-line mode and in Airflow UI.
 
 ## Testing 
 
