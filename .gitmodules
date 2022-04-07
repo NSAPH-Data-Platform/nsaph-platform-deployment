@@ -2,26 +2,30 @@
     path = cwl-airflow
 	url = https://github.com/Barski-lab/cwl-airflow.git
 
-[submodule "/Users/misha/harvard/github/nsaph-cwl-airflow/project/data_platform"]
+[submodule "project/data_platform"]
 	path = project/data_platform
-	url = git@github.com:NSAPH-Data-Platform/nsaph-core-platform.git
+	url = https://github.com/NSAPH-Data-Platform/nsaph-core-platform.git
 	branch = develop
-[submodule "/Users/misha/harvard/github/nsaph-cwl-airflow/project/census"]
+[submodule "project/census"]
 	path = project/census
-	url = git@github.com:NSAPH-Data-Platform/nsaph-census.git
+	url = https://github.com/NSAPH-Data-Platform/nsaph-census.git
 [submodule "project/nsaph_utils"]
 	path = project/nsaph_utils
-	url = git@github.com:NSAPH-Data-Platform/nsaph-utils.git
+	url = https://github.com/NSAPH-Data-Platform/nsaph-utils.git
 	branch = dev
 [submodule "project/epa"]
 	path = project/epa
-	url = git@github.com:NSAPH-Data-Platform/nsaph-epa.git
+	url = https://github.com/NSAPH-Data-Platform/nsaph-epa.git
 	branch = develop
 [submodule "project/cms"]
 	path = project/cms
-	url = git@github.com:NSAPH-Data-Platform/nsaph-cms.git
+	url = https://github.com/NSAPH-Data-Platform/nsaph-cms.git
 	branch = develop
 [submodule "project/gridmet"]
 	path = project/gridmet
-	url = git@github.com:NSAPH-Data-Platform/nsaph-gridmet.git
+	url = https://github.com/NSAPH-Data-Platform/nsaph-gridmet.git
+	branch = develop
+[submodule "project/gis"]
+	path = project/gis
+	url = https://github.com/NSAPH-Data-Platform/nsaph-gis.git
 	branch = develop
