@@ -87,8 +87,6 @@ services:
     <<: *airflow_build_params
     container_name: webserver
     restart: always
-    depends_on:
-      - "postgres"
     user: root
     <<: *airflow_env
     <<: *airflow_volumes
@@ -115,6 +113,8 @@ services:
     <<: *common_parameters
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
+    profiles:
+      - postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRE_USER} -d ${POSTGRE_DB}"]
       interval: 3s
