@@ -12,3 +12,4 @@ project/ExampleEnv.yml
 # infrastructure
 __pycache__
 .idea
+docker-compose.local.yaml
