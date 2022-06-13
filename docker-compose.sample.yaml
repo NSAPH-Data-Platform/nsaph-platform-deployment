@@ -1,0 +1,137 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+#
+
+version: '3.9'
+
+x-aliases:
+  - &common_parameters
+      networks:
+      - airflow-cwl-docker
+  - &airflow_build_params
+      build:
+        context: .
+        dockerfile: Dockerfile
+        args:
+          AIRFLOW_CONDA_ENV: "${AIRFLOW_CONDA_ENV:-none}"
+
+  - &airflow_env
+      environment:
+        AIRFLOW_HOME: /opt/airflow
+        AIRFLOW__CORE__EXECUTOR: LocalExecutor
+        AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRE_USER:-airflow}:${POSTGRE_PASS:-airflow}@${POSTGRE_SERVER:-postgres}/${POSTGRE_DB:-airflow}
+        AIRFLOW__CORE__FERNET_KEY:
+        AIRFLOW_CONN_METADATA_DB: postgresql+psycopg2://${POSTGRE_USER:-airflow}:${POSTGRE_PASS:-airflow}@${POSTGRE_SERVER:-postgres}/${POSTGRE_DB:-airflow}
+        AIRFLOW_VAR__METADATA_DB_SCHEMA: ${POSTGRE_DB:-airflow}
+        AIRFLOW__SCHEDULER__SCHEDULER_HEARTBEAT_SEC: 10
+        AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "True"
+        AIRFLOW__CORE__LOAD_EXAMPLES: ${AIRFLOW__CORE__LOAD_EXAMPLES:-False}
+        AIRFLOW__CORE__DAGS_FOLDER: ${DAGS_FOLDER:-/opt/airflow/dags}
+        _AIRFLOW_DB_UPGRADE: "True"
+        _AIRFLOW_WWW_USER_CREATE: "True"
+        AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX: "True"
+        AIRFLOW__WEBSERVER__EXPOSE_CONFIG: ${AIRFLOW__WEBSERVER__EXPOSE_CONFIG:-True}
+        _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
+        _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+        AIRFLOW__WEBSERVER__BASE_URL: ${BASE_URL:-http://localhost:8080}
+        AIRFLOW__LOGGING__BASE_LOG_FOLDER: "/opt/airflow/logs"
+        PROJECT_DIR: "/opt/airflow/project"
+        AIRFLOW_CONDA_ENV: "${AIRFLOW_CONDA_ENV:-none}"
+
+  - &airflow_volumes
+      volumes:
+        - ${PROJECT_DIR:-./project}:/opt/airflow/project
+        - ${DAGS_DIR:-./dags}:/opt/airflow/dags
+        - ${LOGS_DIR:-./airflow-logs}:/opt/airflow/logs
+        - ${CWL_TMP_FOLDER:-./cwl_tmp_folder}:/opt/airflow/cwl_tmp_folder
+        - ${CWL_INPUTS_FOLDER:-./cwl_inputs_folder}:/opt/airflow/cwl_inputs_folder
+        - ${CWL_OUTPUTS_FOLDER:-./cwl_outputs_folder}:/opt/airflow/cwl_outputs_folder
+        - ${CWL_PICKLE_FOLDER:-./cwl_pickle_folder}:/opt/airflow/cwl_pickle_folder
+        - ./cwl-airflow/cwl_airflow:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/cwl_airflow
+        - ./project/census/src/python/census:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/census
+        - ./project/epa/src/python/epa:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/epa
+        - ./project/gridmet/src/python/gridmet:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/gridmet
+        - ./project/data_platform/src/python/nsaph:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/nsaph/
+        - ./project/gis/nsaph_gis:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/nsaph_gis/
+        - ./project/nsaph_utils/nsaph_utils:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/nsaph_utils
+        - type: bind
+          source: /var/run/docker.sock
+          target: /var/run/docker.sock
+
+services:
+  scheduler:
+    image: "${AIRFLOW_IMAGE_NAME:-myairflow-conda}"
+    <<: *airflow_build_params
+    restart: always
+    user: root
+    container_name: scheduler
+    depends_on:
+      webserver:
+        condition: service_healthy
+    <<: *airflow_env
+    <<: *airflow_volumes
+    <<: *common_parameters
+    command: [ "airflow", "scheduler" ]
+
+  webserver:
+    image: "${AIRFLOW_IMAGE_NAME:-myairflow-conda}"
+    <<: *airflow_build_params
+    container_name: webserver
+    restart: always
+    user: root
+    <<: *airflow_env
+    <<: *airflow_volumes
+    <<: *common_parameters
+    ports:
+      - "8080:8080"
+    command: [ "airflow", "webserver" ]
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 4s
+      retries: 5
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRE_USER:-airflow}
+      POSTGRES_PASSWORD: ${POSTGRE_PASS:-airflow}
+      POSTGRES_DB: ${POSTGRE_DB:-airflow}
+      POSTGRES_HOST_AUTH_METHOD: trust
+    <<: *common_parameters
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    profiles:
+      - postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRE_USER} -d ${POSTGRE_DB}"]
+      interval: 3s
+      timeout: 5s
+      retries: 50
+
+volumes:
+  postgres-db-volume:
+networks:
+  airflow-cwl-docker:
+    driver: bridge
+    name: airflow
+    ipam:
+      config:
+        - subnet: 172.16.238.0/24
