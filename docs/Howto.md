@@ -129,3 +129,9 @@ If you have changed `DAGS_DIR` environment variable
 
     mkdir -p ./dags && cp -rf ./project/examples/* ${DAGS_DIR}/
 
+## Local development
+
+If you want to run cwl in container and edit libraries, you can copy docker-compose config by the following command:
+
+    cp docker-compose.sample.yaml docker-compose.local.yaml
+    docker-compose --env-file ./.env -f docker-compose.local.yaml up
