@@ -1,7 +1,7 @@
 # Some useful commands:
 
 
-<!-- toc -->
+<!--TOC-->
 
 - [To view logs of the running containers:](#to-view-logs-of-the-running-containers)
 - [To attach to the started container (bash)](#to-attach-to-the-started-container-bash)
@@ -12,7 +12,7 @@
 - [Upgrade Airflow Database](#upgrade-airflow-database)
 - [Create Airflow user](#create-airflow-user)
 
-<!-- tocstop -->
+<!--TOC-->
 
 ## To view logs of the running containers:
       usage:
@@ -63,5 +63,3 @@ complaining that "No user yet created" execute this:
 ```
 docker exec -it scheduler entrypoint.sh airflow users create --username $_AIRFLOW_WWW_USER_USERNAME --password $_AIRFLOW_WWW_USER_PASSWORD -r Admin -e 1@example.com -f Airflow -l Airflow
 ```
-
-
