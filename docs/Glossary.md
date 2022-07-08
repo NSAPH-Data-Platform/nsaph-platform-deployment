@@ -1,4 +1,4 @@
-# Glossary
+# Glossary and FAQ
 
 <!-- toc -->
 
