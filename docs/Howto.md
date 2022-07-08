@@ -2,16 +2,18 @@
 
 ## Table of Contents
 
-<!-- toc -->
+<!--TOC-->
 
+- [Table of Contents](#table-of-contents)
 - [Deployment Steps](#deployment-steps)
 - [Building Containers](#building-containers)
-  * [Docker build command](#docker-build-command)
-  * [Rebuilding the Containers](#rebuilding-the-containers)
-  * [When building goes wrong](#when-building-goes-wrong)
+  - [Docker build command](#docker-build-command)
+  - [Rebuilding the Containers](#rebuilding-the-containers)
+  - [When building goes wrong](#when-building-goes-wrong)
 - [Copying DAGs to Airflow folder](#copying-dags-to-airflow-folder)
+- [Local development](#local-development)
 
-<!-- tocstop -->
+<!--TOC-->
 
 For a simple quick start with the most common options for test 
 environment see the [Quick Start](../README.md#quick-start) section

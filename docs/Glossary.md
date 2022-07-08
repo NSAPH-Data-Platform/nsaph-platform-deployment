@@ -1,6 +1,6 @@
 # Glossary and FAQ
 
-<!-- toc -->
+<!--TOC-->
 
 - [What is CWL?](#what-is-cwl)
 - [What is Airflow](#what-is-airflow)
@@ -10,7 +10,7 @@
 - [What is Conda](#what-is-conda)
 - [What is PostgreSQL](#what-is-postgresql)
 
-<!-- tocstop -->
+<!--TOC-->
 
 ### What is CWL?
 

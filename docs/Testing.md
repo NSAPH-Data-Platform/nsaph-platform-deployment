@@ -2,21 +2,22 @@
 
 ## Table of Contents
 
-<!-- toc -->
+<!--TOC-->
 
+- [Table of Contents](#table-of-contents)
 - [Included examples](#included-examples)
 - [Testing command line mode](#testing-command-line-mode)
-  * [Test 1: basic CWL (Hello World)](#test-1-basic-cwl-hello-world)
-  * [Test 2: CWL, using python project](#test-2-cwl-using-python-project)
-  * [Test 3: CWL, using R script](#test-3-cwl-using-r-script)
-  * [Alternative way to test command line](#alternative-way-to-test-command-line)
+  - [Test 1: basic CWL (Hello World)](#test-1-basic-cwl-hello-world)
+  - [Test 2: CWL, using python project](#test-2-cwl-using-python-project)
+  - [Test 3: CWL, using R script](#test-3-cwl-using-r-script)
+  - [Alternative way to test command line](#alternative-way-to-test-command-line)
 - [Testing Airflow User Interface](#testing-airflow-user-interface)
-  * [Preparation](#preparation)
-  * [UI Test 1: basic CWL (Hello World)](#ui-test-1-basic-cwl-hello-world)
-  * [UI Test 2: CWL, using python project](#ui-test-2-cwl-using-python-project)
-  * [UI Test 3: CWL, using R script](#ui-test-3-cwl-using-r-script)
+  - [Preparation](#preparation)
+  - [UI Test 1: basic CWL (Hello World)](#ui-test-1-basic-cwl-hello-world)
+  - [UI Test 2: CWL, using python project](#ui-test-2-cwl-using-python-project)
+  - [UI Test 3: CWL, using R script](#ui-test-3-cwl-using-r-script)
 
-<!-- tocstop -->
+<!--TOC-->
 
 To keep in mind: a few [useful commands](UsefulCommands.md).
 
@@ -176,4 +177,3 @@ Inside the container, execute the following commands:
 
 10. Click `Trigger` button
 11. Examine the Graph and the Log.
-
