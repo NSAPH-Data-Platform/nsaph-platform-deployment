@@ -1,10 +1,15 @@
-# NSAPH Data Platform (Infrastructure as a Code)
+# NSAPH Data Platform 
                                  
-This platform is based on a deployment for CWL-Airflow developed
+Deployment of NSAPH Data Platform is based on  
+CWL-Airflow Docker Deployment developed
 by Harvard FAS RC in collaboration with Forome Association.
 
 Essentially, this is a fork of: 
 [Apache Airflow + CWL in Docker with Optional Conda and R](https://github.com/ForomePlatform/airflow-cwl-docker)
+                                                            
+It follows 
+[Infrastructure as Code (IaC)](https://en.wikipedia.org/wiki/Infrastructure_as_code) 
+approach.
 
 ## Prerequisites 
 
