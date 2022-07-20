@@ -1,4 +1,4 @@
-# NSAPH Data Platform 
+# NSAPH Data Platform Deployment Package
                                  
 Deployment of NSAPH Data Platform is based on  
 CWL-Airflow Docker Deployment developed
