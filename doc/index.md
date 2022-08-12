@@ -50,11 +50,11 @@ Installation of CWL-Airflow on a dedicated host is relatively simple and
 is by and large covered by the [Quick Start](#quick-start) section below.
 
 Advanced options are described in the 
-[Configuration Guide](Configuration)
+[Configuration Guide](Configuration.md)
 
 > If the host where you are installing CWL-Airflow is shared with other 
 > applications, especially those, using PostgreSQL, you should carefully read 
-> [Howto](Howto.md) and [Configuration Guide](Configuration)
+> [Howto](Howto.md) and [Configuration Guide](Configuration.md)
  
 After you have deployed CWL-Airflow, 
 [test it](Testing.md) 
