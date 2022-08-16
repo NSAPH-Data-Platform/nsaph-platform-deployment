@@ -1,39 +1,10 @@
 # Configuration Guide
-                                   
-## Table of Contents
 
-<!--TOC-->
-
-- [Table of Contents](#table-of-contents)
-- [What can be configured](#what-can-be-configured)
-- [Selecting base configuration.](#selecting-base-configuration)
-- [Controlling Conda environments](#controlling-conda-environments)
-  - [Setting Conda environment used during workflow executions](#setting-conda-environment-used-during-workflow-executions)
-  - [Managing multiple Conda environments](#managing-multiple-conda-environments)
-- [Configuring installation of third-party requirements](#configuring-installation-of-third-party-requirements)
-  - [Python requirements](#python-requirements)
-  - [R libraries](#r-libraries)
-- [Configuring user projects](#configuring-user-projects)
-  - [Python Projects](#python-projects)
-  - [Enforcing order for installation of user Python Projects](#enforcing-order-for-installation-of-user-python-projects)
-  - [R Projects](#r-projects)
-- [Configure Git submodules](#configure-git-submodules)
-- [Overriding BASE_URL](#overriding-base_url)
-- [Airflow admin username and password](#airflow-admin-username-and-password)
-- [Configurations related to PostgreSQL](#configurations-related-to-postgresql)
-  - [When you need to change defaults](#when-you-need-to-change-defaults)
-  - [Configuring PostgreSQL Server](#configuring-postgresql-server)
-    - [Create database and user for Airflow](#create-database-and-user-for-airflow)
-    - [Configure PostgreSQL to authenticate Airflow user](#configure-postgresql-to-authenticate-airflow-user)
-  - [Tell Airflow how to authenticate with PostgreSQL](#tell-airflow-how-to-authenticate-with-postgresql)
-    - [Authentication](#authentication)
-    - [Networking](#networking)
-    - [Note for Mac](#note-for-mac)
-- [Overriding default parameters](#overriding-default-parameters)
-  - [Full list of available environment variables](#full-list-of-available-environment-variables)
-  - [Example of .env file. Ready to run containers](#example-of-env-file-ready-to-run-containers)
-
-<!--TOC-->
+```{contents}
+---
+local:
+---
+```
 
 To keep in mind: a few [useful commands](UsefulCommands.md).
 
@@ -41,7 +12,7 @@ To keep in mind: a few [useful commands](UsefulCommands.md).
 
 The following options can be configured:
 
-* Quick Options (see [Quick Start](../README.md#quick-start) 
+* Quick Options (see [Quick Start](index.md#quick-start) 
     and [Selecting base configuration](#selecting-base-configuration)):
     * To install Conda or not
     * Use Existing PostgreSQL or install a new container 
@@ -64,10 +35,10 @@ already have PostgreSQL running directly on your host or in an
 existing Docker container. Combination of these options bring us to four 
 possible base configurations.
 
-| Configurations  | Existing PostgreSQL | New Container with PostgreSQL |
-|---|---------------------|-------------------------------|
-|**With Conda** | Need to install Conda and configure PostgreSQL connections | Need to install Conda and PostgreSQL (**default**). Connections are automatically configured |
-|**Without Conda** | Need to configure PostgreSQL connections | Need to install PostgreSQL. Connections are automatically configured |
+| Configurations    | Existing PostgreSQL                                        | New Container with PostgreSQL                                                                |
+|-------------------|------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| **With Conda**    | Need to install Conda and configure PostgreSQL connections | Need to install Conda and PostgreSQL (**default**). Connections are automatically configured |
+| **Without Conda** | Need to configure PostgreSQL connections                   | Need to install PostgreSQL. Connections are automatically configured                         |
 
 Configuration is mostly defined by setting environment variables
 that can be set manually in the shell or, for simplicity and 
@@ -75,28 +46,30 @@ repeatability, listed in a special file named `.env`. This package
 includes four template environment files, corresponding to the 
 configurations above:
 
-| Configurations  | Existing PostgreSQL | New Container with PostgreSQL |
-|---|---------------------|-------------------------------|
-|**With Conda** | [.env_example_nopostgres_conda](../.env_example_nopostgres_conda) | [.env_example_postgres_conda](../.env_example_postgres_conda) |
-|**Without Conda** | [.env_example_nopostgres_noconda](../.env_example_nopostgres_noconda) | [.env_example_postgres_noconda](../.env_example_postgres_noconda) |
+| Configurations    | Existing PostgreSQL                                                       | New Container with PostgreSQL                                         |
+|-------------------|---------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| **With Conda**    | [.env_example_nopostgres_conda](members/env_example_nopostgres_conda)     | [.env_example_postgres_conda](members/env_example_postgres_conda)     |
+| **Without Conda** | [.env_example_nopostgres_noconda](members/env_example_nopostgres_noconda) | [.env_example_postgres_noconda](members/env_example_postgres_noconda) |
 
 The first step will always be to select the appropriate configuration
 and copying corresponding environment file into `.env`, e.g.,
 
-    cp .env_example_postgres_conda .env
+```shell
+cp .env_example_postgres_conda .env
+```
 
 The configuration is controlled by the two lines at the top
 of each file:
 
-      ###
-      COMPOSE_PROFILES=[/postgres]
-      AIRFLOW_CONDA_ENV=[/conda_default]
-      ###
+```
+###
+COMPOSE_PROFILES=[/postgres]
+AIRFLOW_CONDA_ENV=[/conda_default]
+###
+```
 
 Then users can edit the setting in the `.env`, which they most probably 
 would want to do in a production environment.
-
-
 
 ## Controlling Conda environments
 
@@ -111,11 +84,13 @@ you need into a YAML file. Put your Conda environment file
 into `project` folder under the source tree. Then edit 
 variable `AIRFLOW_CONDA_ENV` in the `.env` file:
 
-    # AIRFLOW_CONDA_ENV="conda_default"
-    AIRFLOW_CONDA_ENV="mycondaenv"
+```
+# AIRFLOW_CONDA_ENV="conda_default"
+AIRFLOW_CONDA_ENV="mycondaenv"
+```
 
 Alternatively, but less preferably, you can replace 
-[conda_default.yml](../project/conda_default.yml).
+[conda_default.yml](members/conda_default.yml).
    
 ### Managing multiple Conda environments
 
@@ -139,7 +114,7 @@ and restart webserver **_without_** rebuilding it.
 ### Python requirements
 
 Python requirements should be placed in the 
-[requirements.txt](../requirements.txt) file.
+[requirements.txt](members/requirements.txt) file.
 
 ### R libraries
 
@@ -149,9 +124,9 @@ therefore R requirements should be part of your
                                                                               
 If any R packages have to be installed from GitHub, they should be
 listed in
-[r-github-packages.txt](../r-github-packages.txt)
+[r-github-packages.txt](members/r-github-packages.txt)
 These packages are installed directly from GitHub 
-by [install_conda script](../install_conda.sh) script.
+by [install_conda](members/install_conda.sh) script.
 Make sure, that there is an 
 end-of-line at the end of the file.
 
@@ -174,9 +149,11 @@ An included example, `project/python_sample_project` shows how it can be done.
 
 Please make sure that the argument 
 
-    install_requires = [
-        ...
-    ]
+```python
+install_requires = [
+    ...
+]
+```
 
 of your `setup.py` file includes all required dependencies.
 
@@ -187,7 +164,7 @@ install the projects in the specific order. To enforce the order,
 create a file called `projects.lst` and place it in `project` folder.
 List a single subfolder of a python project on each line of this file.
 If there is no file `projects.lst`, then teh projects will be installed
-in an arbitrary order. See [install_projects.sh](../install_projects.sh) 
+in an arbitrary order. See [install_projects.sh](members/install_projects.sh) 
 for details.
 
 
@@ -213,10 +190,10 @@ environment. These projects can be installed using Git submodules functionality.
    just copy the content into a subdirectory of `project`.
    Please note, that one submodule (CWL-Airflow) is already included. 
 
-2. Execute command:
-
-        git submodule update --init --recursive
-
+3. Execute command:
+    ```shell
+    git submodule update --init --recursive
+    ```
 
 ## Overriding BASE_URL
 
@@ -230,15 +207,19 @@ tell Airflow that it is behind a proxy. This is done
 by enabling a proxy fix (`enable_proxy_fix = True`) and setting the value
 of `BASE_URL` in your `.env` file.
 
-    export BASE_URL=http://my_host/myorg/airflow
+```shell
+export BASE_URL=http://my_host/myorg/airflow
+```
 
 ## Airflow admin username and password
 Most probably, for security reasons, you would want to change 
 username and password for the Airflow and for the 
 database authentication, used by Airflow.
 
-    export _AIRFLOW_WWW_USER_USERNAME=airflow
-    export _AIRFLOW_WWW_USER_PASSWORD=airflow
+```shell
+export _AIRFLOW_WWW_USER_USERNAME=airflow
+export _AIRFLOW_WWW_USER_PASSWORD=airflow
+```
 
 ## Configurations related to PostgreSQL
 
@@ -262,9 +243,11 @@ application.
 Execute the following commands, replacing appropriate values, or execute 
 corresponding commands within PostgreSQL console, or SQL console.
 
-    sudo -u postgres createuser --superuser --createrole --createdb --login --inherit airflow
-    sudo -u postgres createdb --owner=airflow airflow
-    sudo -u postgres psql -c "alter user airflow with password 'airflow';"
+```shell
+sudo -u postgres createuser --superuser --createrole --createdb --login --inherit airflow
+sudo -u postgres createdb --owner=airflow airflow
+sudo -u postgres psql -c "alter user airflow with password 'airflow';"
+```
 
 ####  Configure PostgreSQL to authenticate Airflow user
 
@@ -277,7 +260,9 @@ or execute a similar procedure. You might need to edit two configuration
 files: `pg_hba.conf` and `postgresql.conf`. If you do not know where they 
 are located, execute the following command:
 
-    sudo -u postgres psql -c "show data_directory;"    
+```shell
+sudo -u postgres psql -c "show data_directory;"
+```
 
 1. Ensure, that network, created by docker for Airflow containers
 can be authenticated by PostgreSQL.
@@ -291,26 +276,34 @@ If you need to change these network parameters, edit `networks` section in
 
 2. Configure authentication in `pg_hba.conf`
 
-       host    all             all             172.16.238.0/24         password
+```
+host    all             all             172.16.238.0/24         password
+```
 
 3. Configure listening address in `postgresql.conf` 
 
-        listen_address = '*'
+```
+listen_address = '*'
+```
 
 4. Restart PostgreSQL service. This is an OS dependent command, but on 
 many Linux systems it will be (for the latest PostgreSQL at the time of
 writing - [PostgreSQL 13](https://www.postgresql.org/docs/13/index.html)): 
 
-       sudo systemctl restart postgresql-13 
+```shell
+sudo systemctl restart postgresql-13 
+```
 
 If you have an existing ***user-defined*** network with custom parameters 
 (***NOT a built-in network***), you will probably need to override these
 additional parameters by exporting them as environment variables 
 and adjusting pg_hba.conf and postgresql.conf as needed.
- 
-    NETWORK_NAME
-    WEB_SERVER_CONTAINER_IP
-    SCHEDULER_CONTAINER_IP
+
+```
+NETWORK_NAME
+WEB_SERVER_CONTAINER_IP
+SCHEDULER_CONTAINER_IP
+```
 
 ### Tell Airflow how to authenticate with PostgreSQL
 
@@ -327,21 +320,24 @@ you would want to change
 username and password that Airflow uses to connect. Uncomment
 and edit the following lines in your `.env` file:
 
-    # POSTGRE_USER=airflow
-    # POSTGRE_PASS=airflow
-    # POSTGRE_DB=airflow
+```
+# POSTGRE_USER=airflow
+# POSTGRE_PASS=airflow
+# POSTGRE_DB=airflow
+```
 
 #### Networking
 
 If you created custom docker network, your PostgreSQL server address 
 is defined by `gateway` option in `docker network create` command.
 By default, it is set to `172.16.238.1` in the
-[docker-compose](../docker-compose.yaml). Alternatively, sometimes, it 
+[docker-compose](members/docker-compose.yaml). Alternatively, sometimes, it 
 will be `172.17.0.1` or `172.18.0.1`.
 
-    export POSTGRE_SERVER=172.16.238.1  
-    ## or export POSTGRE_SERVER=172.18.0.1
-
+```shell
+export POSTGRE_SERVER=172.16.238.1  
+## or export POSTGRE_SERVER=172.18.0.1
+```
       
 #### Note for Mac
 
@@ -354,9 +350,6 @@ will be `172.17.0.1` or `172.18.0.1`.
 > and set PostgreSQL server address to `host.docker.internal`
 > 
 >    `export POSTGRE_SERVER=host.docker.internal` 
-
-
-
 
 ## Overriding default parameters
 

@@ -1,26 +1,18 @@
 # Howto
 
-## Table of Contents
-
-<!--TOC-->
-
-- [Table of Contents](#table-of-contents)
-- [Deployment Steps](#deployment-steps)
-- [Building Containers](#building-containers)
-  - [Docker build command](#docker-build-command)
-  - [Rebuilding the Containers](#rebuilding-the-containers)
-  - [When building goes wrong](#when-building-goes-wrong)
-- [Copying DAGs to Airflow folder](#copying-dags-to-airflow-folder)
-- [Local development](#local-development)
-
-<!--TOC-->
+```{contents}
+---
+local:
+---
+```
 
 For a simple quick start with the most common options for test 
-environment see the [Quick Start](../README.md#quick-start) section
+environment see the [Quick Start](index.md#quick-start) section
 of README. It will allow you to quickly crete an environment
+
 where you can try whether it works for you.
 
-To keep in mind: a few [useful commands](UsefulCommands.md).
+To keep in mind: a few [useful commands](UsefulCommands).
 
 ## Deployment Steps
 
@@ -29,38 +21,52 @@ with your custom options, you will need to follow these steps:
 
 1. Clone the repository. Sample commands:
 
-        git clone https://github.com/ForomePlatform/airflow-cwl-docker.git
-        cd airflow-cwl-docker
+    ```shell
+    git clone https://github.com/ForomePlatform/airflow-cwl-docker.git
+    cd airflow-cwl-docker
+    ```
 
 2. Init git submodules (_simple command below is required to fetch CWL-airflow, 
-    see [Configuration](Configuration.md#configure-git-submodules)
-    for advanced options_):
+   see [Configuration](Configuration.md#configure-git-submodules)
+   for advanced options_):
 
-        git submodule update --init --recursive
-                                               
+    ```shell
+    git submodule update --init --recursive
+    ```
+
 3. **[Optional]** [Configure PostgreSQL](Configuration.md#configurations-related-to-postgresql) 
     and how Airflow connects to it.
+
 4. **[Optional]** [Configure prerequisites](Configuration.md#configuring-installation-of-third-party-requirements)
+
 5. **[Optional]** Configure [your own projects](Configuration.md#configuring-user-projects) 
     that have to be installed
     in the workflow execution environment.
+
 6. Copy [environment template](Configuration.md#selecting-base-configuration) 
-    to `.env` file. Sample command:
-   
-        cp .env_example_postgres_noconda .env
+   to `.env` file. Sample command:
+    ```shell
+    cp .env_example_postgres_noconda .env
+    ```
+        
 7. **[Optional]** Adjust environment settings:
    * [Base URL](Configuration.md#overriding-base_url)
    * How Airflow connects to PostgreSQL
    * [Airflow admin username and password](Configuration.md#airflow-admin-username-and-password)
    * [Anything else](Configuration.md#full-list-of-available-environment-variables)
-8. Build the containers. Sample command (see [advanced options](#building-containers)):
 
-        DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose --env-file ./.env build
+8. Build the containers. Sample command (see [advanced options](#building-containers)):
+    ```shell
+    DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose --env-file ./.env build
+    ```
+        
 9. [Copy DAGs](#copying-dags-to-airflow-folder) from examples 
     to a directory in Airflow path (and your own DAGs)
      Sample command:
+    ```shell
+    mkdir -p ./dags && cp -rf ./project/examples/* ./dags
+    ```
 
-        mkdir -p ./dags && cp -rf ./project/examples/* ./dags
 10. **[Optional]** Delete postgres volume to recreate the Airflow database. 
     > This step is required if you have changed PostgreSQL 
     configuration or authentication 
@@ -69,13 +75,17 @@ with your custom options, you will need to follow these steps:
      
     See [commands](UsefulCommands.md#to-delete-postgresql-volumes)
     to be executed.
+
 11. Start the containers:
     * Daemon mode
-    
-            docker-compose down && docker-compose --env-file ./.env up -d
+        ```shell
+        docker-compose down && docker-compose --env-file ./.env up -d
+        ```
+            
     * Or, console mode:
-    
-            docker-compose down && docker-compose --env-file ./.env up 
+        ```shell
+        docker-compose down && docker-compose --env-file ./.env up 
+        ```
 
 12. Wait for the Airflow to initialize and start up. The first time
     you run the containers, Airflow will need to perform some 
@@ -83,9 +93,10 @@ with your custom options, you will need to follow these steps:
     creating an admin user
     * If you use daemon mode then use the following command to examine how 
         the Airflow starts up
-
-            docker-compose logs -f webserver
-
+        ```shell
+        docker-compose logs -f webserver
+        ```
+      
 13. [Test your deployment](Testing.md)
 
 ## Building Containers
@@ -94,15 +105,15 @@ with your custom options, you will need to follow these steps:
 
 Use the following command for docker build:
 
-```
+```shell
 DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose build
 ```
 
-Variable DOCKER_BUILDKIT=1 instructs Docker to use 
+Variable `DOCKER_BUILDKIT=1` instructs Docker to use 
 [BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/) 
 (only during build)
 
-Variable BUILDKIT_PROGRESS=plain instructs Docker  
+Variable `BUILDKIT_PROGRESS=plain` instructs Docker 
 to use plain text progress output (only during build)
 
 ### Rebuilding the Containers
@@ -116,24 +127,31 @@ to use plain text progress output (only during build)
 ### When building goes wrong
 Build the containers with a detailed log. One possible command is:
 
-    export log=build-`date +%Y-%m-%d-%H-%M`.log && date > $log && cat .env >> $log && DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose --env-file ./.env  build --no-cache 2>&1 | tee -a $log && date >> $log
-    
+```shell
+export log=build-`date +%Y-%m-%d-%H-%M`.log && date > $log && cat .env >> $log && DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose --env-file ./.env  build --no-cache 2>&1 | tee -a $log && date >> $log
+```
 
 ## Copying DAGs to Airflow folder
 
 After the build, copy the DAGs you will be using into dags fle.
 Examples can be copied by the following command:
 
-    mkdir -p ./dags && cp -rf ./project/examples/* ./dags
-                                                           
+```shell
+mkdir -p ./dags && cp -rf ./project/examples/* ./dags
+```
+
 If you have changed `DAGS_DIR` environment variable 
 (e.g. in .env file), then the command will be:
 
-    mkdir -p ./dags && cp -rf ./project/examples/* ${DAGS_DIR}/
+```shell
+mkdir -p ./dags && cp -rf ./project/examples/* ${DAGS_DIR}/
+```
 
 ## Local development
 
 If you want to run cwl in container and edit libraries, you can copy docker-compose config by the following command:
 
-    cp docker-compose.sample.yaml docker-compose.local.yaml
-    docker-compose --env-file ./.env -f docker-compose.local.yaml up
+```shell
+cp docker-compose.sample.yaml docker-compose.local.yaml
+docker-compose --env-file ./.env -f docker-compose.local.yaml up
+```
