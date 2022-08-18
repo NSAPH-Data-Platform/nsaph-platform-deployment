@@ -10,7 +10,7 @@ the package for deployment of CWL Airflow and describes its
 main components.
                       
 [This page](index.md) includes a high level overview of the 
-deployment package and a [Quick Start Guide](index.md#dep-quick-start).
+deployment package and a [Quick Start Guide](index.md#dep_quick_start).
 
 [Configuration Guide](Configuration.md) provides details of custom 
 configuration options.

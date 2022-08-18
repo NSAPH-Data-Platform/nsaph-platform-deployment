@@ -7,7 +7,7 @@ local:
 ```
 
 For a simple quick start with the most common options for test 
-environment see the [Quick Start](index.md#dep-quick-start) section
+environment see the [Quick Start](index.md#dep_quick_start) section
 of README. It will allow you to quickly crete an environment
 
 where you can try whether it works for you.
