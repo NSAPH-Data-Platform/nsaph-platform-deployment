@@ -62,7 +62,7 @@ with the included examples.
                          
 You should be aware of some [useful commands](UsefulCommands).
 
-(dep-quick-start)=
+(dep/quick/start)=
 ## Quick Start 
  
 This quick start is specific to NSAPH project. For testing general 
