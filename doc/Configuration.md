@@ -12,7 +12,7 @@ To keep in mind: a few [useful commands](UsefulCommands.md).
 
 The following options can be configured:
 
-* Quick Options (see [Quick Start](index.md#quick-start) 
+* Quick Options (see [Quick Start](index.md#dep-quick-start) 
     and [Selecting base configuration](#selecting-base-configuration)):
     * To install Conda or not
     * Use Existing PostgreSQL or install a new container 
