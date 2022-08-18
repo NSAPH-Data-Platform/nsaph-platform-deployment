@@ -63,7 +63,7 @@ with the included examples.
 You should be aware of some [useful commands](UsefulCommands).
 
 
-## Quick Start
+## Quick Start {#dep-quick-start}
  
 This quick start is specific to NSAPH project. For testing general 
 platform capabilities please refer to original 
@@ -93,7 +93,7 @@ The third example requires Conda.
 
 Testing is described in the [Test Guide](Testing.md).
 
-## Indices and tables
+## Indices {#dep-indices}
 
 * [](genindex)
 * [](modindex)
