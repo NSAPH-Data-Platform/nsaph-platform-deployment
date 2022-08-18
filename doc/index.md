@@ -47,7 +47,7 @@ deployment options and custom configurations.
 that should be performed during the deployment.  
 
 Installation of CWL-Airflow on a dedicated host is relatively simple and 
-is by and large covered by the {ref}`dep_quick_start` section below.
+is by and large covered by the [](#quick-start-deployment) section below.
 
 Advanced options are described in the 
 [Configuration Guide](Configuration.md)
@@ -62,8 +62,7 @@ with the included examples.
                          
 You should be aware of some [useful commands](UsefulCommands).
 
-(dep_quick_start)=
-## Quick Start 
+## Quick Start Deployment
  
 This quick start is specific to NSAPH project. For testing general 
 platform capabilities please refer to original 
@@ -93,7 +92,7 @@ The third example requires Conda.
 
 Testing is described in the [Test Guide](Testing.md).
 
-## Indices {#dep-indices}
+## Documentation Indices 
 
 * [](genindex)
 * [](modindex)
