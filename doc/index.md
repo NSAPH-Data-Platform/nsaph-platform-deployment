@@ -92,7 +92,3 @@ The third example requires Conda.
 
 Testing is described in the [Test Guide](Testing.md).
 
-## Documentation Indices 
-
-* [](genindex)
-* [](modindex)

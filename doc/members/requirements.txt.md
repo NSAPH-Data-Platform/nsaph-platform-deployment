@@ -2,7 +2,7 @@
 orphan: true
 ---
 
-# Python requirements
+# List of Python requirements
 
 ```{literalinclude} ../../requirements.txt
 ```
