@@ -163,7 +163,7 @@ If the projects depend on each other, then it is important to
 install the projects in the specific order. To enforce the order,
 create a file called `projects.lst` and place it in `project` folder.
 List a single subfolder of a python project on each line of this file.
-If there is no file `projects.lst`, then teh projects will be installed
+If there is no file `projects.lst`, then the projects will be installed
 in an arbitrary order. See [install_projects.sh](members/install_projects.sh) 
 for details.
 
@@ -197,7 +197,7 @@ environment. These projects can be installed using Git submodules functionality.
 
 ## Overriding BASE_URL
 
-In most of teh cases, you will use a 
+In most of the cases, you will use a 
 [proxy server to connect to Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/run-behind-proxy.html) 
 in production environment. The connection can go through 
 [nginx](https://www.nginx.com/) or
