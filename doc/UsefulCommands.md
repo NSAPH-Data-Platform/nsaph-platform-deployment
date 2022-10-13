@@ -30,7 +30,7 @@ docker-compose exec webserver bash
 ```
                                            
 ## Attach to a container when it does not start
-If a container does not start because of teh startup errors,
+If a container does not start because of the startup errors,
 use the following command:
 
 ```shell
