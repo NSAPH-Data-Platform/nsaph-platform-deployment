@@ -62,6 +62,7 @@ x-aliases:
         - ${CWL_OUTPUTS_FOLDER:-./cwl_outputs_folder}:/opt/airflow/cwl_outputs_folder
         - ${CWL_PICKLE_FOLDER:-./cwl_pickle_folder}:/opt/airflow/cwl_pickle_folder
         - /data/incoming:/data/incoming
+        - /n/dominici_nsaph_l3/Lab/projects/analytic/denom_by_year_csv:/data/dominici_nsaph_l3/medicare
         - /scratch/cwl/rundir:/opt/airflow/cwl_rundir
         - type: bind
           source: /var/run/docker.sock
