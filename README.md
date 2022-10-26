@@ -11,5 +11,5 @@ It follows
 [Infrastructure as Code (IaC)](https://en.wikipedia.org/wiki/Infrastructure_as_code) 
 approach.
 
-[NSAPH Data Platform Deployment Documentation](https://nsaph-data-platform.github.io/nsaph-platform-docs/common/deployment/)                                
+[NSAPH Data Platform Deployment Documentation](https://nsaph-data-platform.github.io/nsaph-platform-docs/common/platform-deployment/doc//)                                
 [Full Platform Documentation](https://nsaph-data-platform.github.io/nsaph-platform-docs/home.html)
