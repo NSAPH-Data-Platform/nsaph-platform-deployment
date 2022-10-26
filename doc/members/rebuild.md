@@ -1,8 +1,8 @@
-# Script to rebuild docker containers with latest Python packages
-
 ---
 orphan: true
 ---
+
+# Script to rebuild docker containers with latest Python packages
 
 ```{literalinclude} ../../hardreset.sh
 ---
