@@ -1,4 +1,4 @@
-# Introduction
+# Introduction to Deployment of NSAPH Data Platform
 
 Data processing workflows consist of multiple steps with each 
 step using different tools. These tools and their prerequisites must  

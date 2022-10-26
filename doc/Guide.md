@@ -3,14 +3,14 @@
                          
 ## What is in
 
-Examine [Prerequisites](../README.md#prerequisites) in README file. 
+Examine [Prerequisites](index.md#prerequisites). 
 
 [Introduction](Introduction.md) explains rationale for developing
 the package for deployment of CWL Airflow and describes its
 main components.
                       
-[README](../README.md) includes a high level overview of the 
-deployment package and a [Quick Start Guide](../README.md#quick-start).
+[This page](index.md) includes a high level overview of the 
+deployment package and a [Quick Start Guide](index.md#quick-start-deployment).
 
 [Configuration Guide](Configuration.md) provides details of custom 
 configuration options.

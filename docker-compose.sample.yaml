@@ -61,9 +61,13 @@ x-aliases:
         - ${CWL_INPUTS_FOLDER:-./cwl_inputs_folder}:/opt/airflow/cwl_inputs_folder
         - ${CWL_OUTPUTS_FOLDER:-./cwl_outputs_folder}:/opt/airflow/cwl_outputs_folder
         - ${CWL_PICKLE_FOLDER:-./cwl_pickle_folder}:/opt/airflow/cwl_pickle_folder
-        - /data/incoming:/data/incoming
-        #- /n/dominici_nsaph_l3/Lab/projects/analytic/denom_by_year_csv:/data/dominici_nsaph_l3/medicare
-        - /scratch/cwl/rundir:/opt/airflow/cwl_rundir
+        - ./cwl-airflow/cwl_airflow:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/cwl_airflow
+        - ./project/census/src/python/census:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/census
+        - ./project/epa/src/python/epa:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/epa
+        - ./project/gridmet/src/python/gridmet:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/gridmet
+        - ./project/data_platform/src/python/nsaph:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/nsaph/
+        - ./project/gis/nsaph_gis:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/nsaph_gis/
+        - ./project/nsaph_utils/nsaph_utils:/root/anaconda/envs/nsaph/lib/python3.8/site-packages/nsaph_utils
         - type: bind
           source: /var/run/docker.sock
           target: /var/run/docker.sock
@@ -93,7 +97,7 @@ services:
     <<: *airflow_volumes
     <<: *common_parameters
     ports:
-      - "${WEB_SERVER_PORT:-8080}:8080"
+      - "8080:8080"
     command: [ "airflow", "webserver" ]
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
