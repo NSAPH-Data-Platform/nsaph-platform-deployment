@@ -13,6 +13,6 @@ args = {
 
 dag = CWLDAG(
     workflow="/opt/airflow/project/cms/src/cwl/grant_read_access.cwl",
-    dag_id="Grant Access to Tables",
+    dag_id="Grant_Access_to_Tables",
     default_args=args
 )
