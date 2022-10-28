@@ -5,10 +5,6 @@ args = {
     "cwl": {
         "debug": True
     },
-    "job": {
-        "database": "/opt/airflow/project/database.ini",
-        "connection_name": "nsaph2"
-    }
 }
 
 dag = CWLDAG(
