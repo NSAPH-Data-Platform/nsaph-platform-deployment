@@ -12,7 +12,7 @@ args = {
 }
 
 dag = CWLDAG(
-    workflow="/opt/airflow/project/cms/src/cwl/grant_read_access.cwl",
+    workflow="/opt/airflow/project/cms/src/cwl/grant.cwl",
     dag_id="Grant_Access_to_Tables",
     default_args=args
 )
