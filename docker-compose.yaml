@@ -42,7 +42,7 @@ x-aliases:
         AIRFLOW__CORE__LOAD_EXAMPLES: ${AIRFLOW__CORE__LOAD_EXAMPLES:-False}
         AIRFLOW__CORE__DAGS_FOLDER: ${DAGS_FOLDER:-/opt/airflow/dags}
         #AIRFLOW__LOGGING__EXTRA_LOGGERS: "cwltool"
-        AIRFLOW__LOGGING__LOGGING_CONFIG_CLASS: "cwl_airflow/config_templates/airflow_local_settings.DEFAULT_LOGGING_CONFIG"
+        AIRFLOW__LOGGING__LOGGING_CONFIG_CLASS: "cwl_airflow.config_templates.airflow_local_settings.DEFAULT_LOGGING_CONFIG"
         _AIRFLOW_DB_UPGRADE: "True"
         _AIRFLOW_WWW_USER_CREATE: "True"
         AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX: "True"
