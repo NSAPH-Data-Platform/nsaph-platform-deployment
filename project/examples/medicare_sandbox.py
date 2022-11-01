@@ -11,18 +11,20 @@ A different database can be selected by overriding
 
 Sample configuration:
 
-```json
-{
-    "job": {
-        "database": {
-            "class": "File",
-            "path": "/opt/airflow/project/sandbox.ini"
-         },
-        "connection_name": "sandbox",
-        "input": "/data/incoming/rce/ci3_d_medicare/original_data/cms_medicare/empty"
-    }
-}
-```
+
+        {
+            "job": {
+                "database": {
+                    "class": "File",
+                    "path": "/opt/airflow/project/sandbox.ini"
+                 },
+                "connection_name": "sandbox",
+                "input": {
+                    "class": "Directory",
+                    "path": "/data/incoming/rce/ci3_d_medicare/original_data/cms_medicare/empty"
+                }
+            }
+        }
 
 To ingest data from a certain directory, specify it in the `input`
 parameter instead of `empty`.
