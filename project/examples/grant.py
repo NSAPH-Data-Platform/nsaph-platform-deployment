@@ -7,7 +7,22 @@ NSAPH group users. By default it is executed in the production
 database.
 
 A different database can be selected by overriding
-`connection_name` parameter in the JSON Job COnfiguration
+`connection_name` parameter in the JSON Job Configuration
+
+
+Sample configuration:
+
+```json
+{
+    "job": {
+        "database": {
+            "class": "File",
+            "path": "/opt/airflow/project/database.ini"
+         },
+        "connection_name": "nsaph2"
+    }
+}
+```
 """
 
 from cwl_airflow.extensions.cwldag import CWLDAG
@@ -31,6 +46,6 @@ dag = CWLDAG(
         }
     },
     doc_md = __doc__,
-    description="Grant Read access to teh database",
+    description="Grant Read access to the database",
     default_args=args
 )

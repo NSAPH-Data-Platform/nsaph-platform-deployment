@@ -1,13 +1,26 @@
 #!/usr/bin/env python3
 
 """
-Execution of this DAG will grant `SELECT` privileges to all
-tables and
-NSAPH group users. By default it is executed in the production
-database.
+Execution of this DAG will change the ownership of all
+objects in the given database.
 
-A different database can be selected by overriding
-`connection_name` parameter in the JSON Job COnfiguration
+The database is defined by the
+`connection_name` parameter in the JSON Job Configuration
+
+Sample configuration:
+
+```json
+{
+    "job": {
+        "database": {
+            "class": "File",
+            "path": "/opt/airflow/project/sandbox.ini"
+         },
+        "connection_name": "sandbox"
+    }
+}
+```
+
 """
 
 from cwl_airflow.extensions.cwldag import CWLDAG
@@ -21,16 +34,7 @@ args = {
 dag = CWLDAG(
     workflow="/opt/airflow/project/cms/src/cwl/change_owner.cwl",
     dag_id="Change_Ownership_of_Tables",
-    params = {
-        "job": {
-            "database": {
-              	"class": "File",
-          		"path": "/opt/airflow/project/database.ini"
-            },
-            "connection_name": "nsaph2"
-        }
-    },
     doc_md = __doc__,
-    description="Grant Read access to teh database",
+    description="Change ownership of the objects in the database",
     default_args=args
 )
