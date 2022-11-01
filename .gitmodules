@@ -12,7 +12,7 @@
 [submodule "project/nsaph_utils"]
 	path = project/nsaph_utils
 	url = https://github.com/NSAPH-Data-Platform/nsaph-utils.git
-	branch = dev
+	branch = develop
 [submodule "project/epa"]
 	path = project/epa
 	url = https://github.com/NSAPH-Data-Platform/nsaph-epa.git
