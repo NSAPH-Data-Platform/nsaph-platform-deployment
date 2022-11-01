@@ -12,17 +12,15 @@ A different database can be selected by overriding
 
 Sample configuration:
 
-```json
-{
-    "job": {
-        "database": {
-            "class": "File",
-            "path": "/opt/airflow/project/database.ini"
-         },
-        "connection_name": "nsaph2"
-    }
-}
-```
+        {
+            "job": {
+                "database": {
+                    "class": "File",
+                    "path": "/opt/airflow/project/database.ini"
+                 },
+                "connection_name": "nsaph2"
+            }
+        }
 """
 
 from cwl_airflow.extensions.cwldag import CWLDAG

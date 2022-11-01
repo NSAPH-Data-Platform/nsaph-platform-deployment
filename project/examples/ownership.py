@@ -9,17 +9,15 @@ The database is defined by the
 
 Sample configuration:
 
-```json
-{
-    "job": {
-        "database": {
-            "class": "File",
-            "path": "/opt/airflow/project/sandbox.ini"
-         },
-        "connection_name": "sandbox"
-    }
-}
-```
+        {
+            "job": {
+                "database": {
+                    "class": "File",
+                    "path": "/opt/airflow/project/sandbox.ini"
+                 },
+                "connection_name": "sandbox"
+            }
+        }
 
 """
 
